@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f5f8fc;
+  color: #26364a;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 55px 0;
+}
+
+.contenedor > h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: #12345a;
+  margin-bottom: 15px;
+}
+
+.contenedor > p {
+  color: #64748b;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+h2 {
+  color: #12345a;
+  margin-bottom: 15px;
+}
+
+h3 {
+  color: #12345a;
+  margin-bottom: 10px;
+}
+
+.destinos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 35px;
+}
+
+.destino-card,
+.opcion-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(18, 52, 90, 0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.destino-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 35px rgba(18, 52, 90, 0.14);
+}
+
+.destino-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.destino-info {
+  padding: 24px;
+}
+
+.destino-info h2 {
+  font-size: 1.45rem;
+  margin-bottom: 8px;
+}
+
+.destino-info p {
+  color: #64748b;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.destino-info h3 {
+  font-size: 1rem;
+  margin: 18px 0 10px;
+}
+
+.destino-info ul {
+  padding-left: 20px;
+  margin-bottom: 22px;
+  color: #64748b;
+  line-height: 1.9;
+}
+
+.destino-info a,
+button {
+  display: inline-block;
+  background: #087e8b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.destino-info a:hover,
+button:hover {
+  background: #065e68;
+  transform: translateY(-2px);
+}
+
+.contenedor > a {
+  display: inline-block;
+  color: #087e8b;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.contenedor > a:hover {
+  color: #065e68;
+}
+
+.contenedor section {
+  margin-top: 35px;
+}
+
+.contenedor section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #dce8ef;
+  padding-bottom: 12px;
+}
+
+.opcion-card {
+  padding: 24px;
+  margin-bottom: 18px;
+  border-left: 5px solid #087e8b;
+}
+
+.opcion-card h3 {
+  font-size: 1.2rem;
+}
+
+.opcion-card p {
+  color: #64748b;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .contenedor {
+    width: 92%;
+    padding: 35px 0;
+  }
+
+  .contenedor > h1 {
+    font-size: 2rem;
+  }
+
+  .destinos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .destino-card img {
+    height: 200px;
+  }
+
+  .destino-info {
+    padding: 20px;
+  }
+
+  .opcion-card {
+    padding: 18px;
+  }
+}
