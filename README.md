@@ -1,16 +1,92 @@
-# React + Vite
+# Agencia de Viajes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción del proyecto
 
-Currently, two official plugins are available:
+Aplicación web desarrollada con React que permite explorar destinos turísticos y consultar información sobre vuelos y hoteles disponibles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+El proyecto utiliza servicios REST y GraphQL simulados mediante Mock Service Worker (MSW), permitiendo probar la comunicación entre frontend y backend sin necesitar un servidor externo.
 
-## React Compiler
+## Tecnologías utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- Vite
+- React Router
+- Mock Service Worker (MSW)
+- API REST mock
+- API GraphQL mock
+- HTML y CSS
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Listado de destinos turísticos.
+- Visualización de información detallada de cada destino.
+- Consulta de vuelos disponibles.
+- Consulta de hoteles disponibles.
+- Navegación entre las diferentes vistas.
+- Manejo de información mediante servicios simulados.
+
+## Destinos disponibles
+
+- Cancún, México.
+- Río de Janeiro, Brasil.
+- París, Francia.
+- Tokio, Japón.
+
+## Instalación y ejecución
+
+1. Clonar el repositorio:
+
+   ```bash
+   git clone https://github.com/MaBrambilla32/PROYECTO_VIAJES.git
+   ```
+
+2. Ingresar a la carpeta:
+
+   ```bash
+   cd PROYECTO_VIAJES
+   ```
+
+3. Instalar las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+4. Ejecutar el proyecto:
+
+   ```bash
+   npm run dev
+   ```
+
+## Compilación y publicación
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+```
+
+Para publicar en GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+## API simuladas
+
+**API REST:** permite obtener el listado de destinos turísticos.
+
+**API GraphQL:** permite consultar los vuelos y hoteles asociados a cada destino.
+
+Ambas API se simulan utilizando Mock Service Worker (MSW).
+
+## Publicación
+
+El proyecto se encuentra publicado mediante GitHub Pages:
+
+https://mabrambilla32.github.io/PROYECTO_VIAJES/
+
+## Repositorio
+
+https://github.com/MaBrambilla32/PROYECTO_VIAJES
