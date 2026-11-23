@@ -1,88 +1,77 @@
 import { http, HttpResponse } from "msw";
-import { buildSchema, graphql } from "graphql";
 
 const destinos = [
   {
-    id: 1,
+    id: "1",
     nombre: "Cancún",
     pais: "México",
-    descripcion: "Playas paradisíacas y aguas cristalinas.",
-    actividades: ["Snorkel", "Buceo", "Visitar cenotes"],
+    descripcion: "Disfruta de playas de aguas cristalinas y arena blanca.",
     imagen: "https://images.unsplash.com/photo-1510097467424-192d713fd8b2",
+    actividades: ["Playas", "Buceo", "Excursiones"]
   },
   {
-    id: 2,
+    id: "2",
     nombre: "Río de Janeiro",
     pais: "Brasil",
-    descripcion: "Disfruta sus playas y paisajes naturales.",
-    actividades: ["Cristo Redentor", "Copacabana", "Senderismo"],
+    descripcion: "Descubre sus playas, paisajes y cultura.",
     imagen: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325",
+    actividades: ["Playas", "Turismo", "Gastronomía"]
   },
   {
-    id: 3,
+    id: "3",
     nombre: "París",
     pais: "Francia",
-    descripcion: "Descubre la ciudad del amor y su cultura.",
-    actividades: ["Torre Eiffel", "Museo del Louvre", "Paseos por el Sena"],
+    descripcion: "Conoce la ciudad del amor y sus monumentos.",
     imagen: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+    actividades: ["Museos", "Cultura", "Gastronomía"]
   },
   {
-    id: 4,
+    id: "4",
     nombre: "Tokio",
     pais: "Japón",
-    descripcion: "Conoce una ciudad llena de tecnología y tradición.",
-    actividades: ["Templos", "Gastronomía japonesa", "Shibuya"],
+    descripcion: "Explora una ciudad que combina tradición y tecnología.",
     imagen: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf",
-  },
+    actividades: ["Tecnología", "Cultura", "Compras"]
+  }
 ];
 
 const vuelos = [
-  { id: 1, destinoId: 1, aerolinea: "LATAM", precio: 450000, fecha: "2027-01-15", disponibilidad: true },
-  { id: 2, destinoId: 1, aerolinea: "Sky Airline", precio: 390000, fecha: "2027-01-20", disponibilidad: true },
-  { id: 3, destinoId: 2, aerolinea: "LATAM", precio: 320000, fecha: "2027-02-10", disponibilidad: true },
-  { id: 4, destinoId: 2, aerolinea: "Avianca", precio: 350000, fecha: "2027-02-15", disponibilidad: false },
-  { id: 5, destinoId: 3, aerolinea: "Air France", precio: 780000, fecha: "2027-03-05", disponibilidad: true },
-  { id: 6, destinoId: 4, aerolinea: "Japan Airlines", precio: 950000, fecha: "2027-04-12", disponibilidad: true },
+  {
+    id: "1",
+    destinoId: "1",
+    aerolinea: "LATAM",
+    precio: 450000,
+    fecha: "2026-12-15",
+    disponibilidad: 20
+  },
+  {
+    id: "2",
+    destinoId: "1",
+    aerolinea: "Sky Airline",
+    precio: 390000,
+    fecha: "2026-12-16",
+    disponibilidad: 15
+  }
 ];
 
 const hoteles = [
-  { id: 1, destinoId: 1, nombre: "Hotel Caribe", precio: 85000, fecha: "2027-01-15", disponibilidad: true },
-  { id: 2, destinoId: 1, nombre: "Resort Paradise", precio: 120000, fecha: "2027-01-20", disponibilidad: true },
-  { id: 3, destinoId: 2, nombre: "Hotel Copacabana", precio: 70000, fecha: "2027-02-10", disponibilidad: true },
-  { id: 4, destinoId: 3, nombre: "Hotel Eiffel", precio: 150000, fecha: "2027-03-05", disponibilidad: true },
-  { id: 5, destinoId: 4, nombre: "Tokyo Central Hotel", precio: 110000, fecha: "2027-04-12", disponibilidad: false },
+  {
+    id: "1",
+    destinoId: "1",
+    nombre: "Hotel Caribe",
+    precio: 85000,
+    fecha: "2026-12-15",
+    disponibilidad: 10
+  },
+  {
+    id: "2",
+    destinoId: "1",
+    nombre: "Resort Paradise",
+    precio: 120000,
+    fecha: "2026-12-15",
+    disponibilidad: 8
+  }
 ];
-
-const esquema = buildSchema(`
-  type Vuelo {
-    id: ID!
-    aerolinea: String!
-    precio: Int!
-    fecha: String!
-    disponibilidad: Boolean!
-  }
-
-  type Hotel {
-    id: ID!
-    nombre: String!
-    precio: Int!
-    fecha: String!
-    disponibilidad: Boolean!
-  }
-
-  type Query {
-    vuelos(destinoId: Int!): [Vuelo!]!
-    hoteles(destinoId: Int!): [Hotel!]!
-  }
-`);
-
-const resolvers = {
-  vuelos: ({ destinoId }) =>
-    vuelos.filter((vuelo) => vuelo.destinoId === destinoId),
-
-  hoteles: ({ destinoId }) =>
-    hoteles.filter((hotel) => hotel.destinoId === destinoId),
-};
 
 export const handlers = [
   http.get("/api/destinos", () => {
@@ -91,15 +80,25 @@ export const handlers = [
 
   http.post("/graphql", async ({ request }) => {
     const body = await request.json();
+    const { operationName, variables } = body;
 
-    const resultado = await graphql({
-      schema: esquema,
-      source: body.query,
-      rootValue: resolvers,
-      variableValues: body.variables,
-      operationName: body.operationName,
+    if (operationName === "ObtenerViajes") {
+      const destinoId = variables?.destinoId;
+
+      return HttpResponse.json({
+        data: {
+          vuelos: vuelos.filter(
+            (vuelo) => vuelo.destinoId === String(destinoId)
+          ),
+          hoteles: hoteles.filter(
+            (hotel) => hotel.destinoId === String(destinoId)
+          )
+        }
+      });
+    }
+
+    return HttpResponse.json({
+      errors: [{ message: "Operación GraphQL no encontrada" }]
     });
-
-    return HttpResponse.json(resultado);
-  }),
+  })
 ];
