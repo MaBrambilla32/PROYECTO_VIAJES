@@ -1,4 +1,4 @@
-import{a as e,i as t,n,r,t as i}from"./index-B0q2XqzH.js";var a=e(t(),1);async function o(e){let t=await fetch(`/graphql`,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({operationName:`ObtenerViajes`,query:`
+import{a as e,i as t,n,r,t as i}from"./index-CZ5OZWs3.js";var a=e(t(),1);async function o(e){let t=await fetch(`/PROYECTO_VIAJES/graphql`,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({operationName:`ObtenerViajes`,query:`
     query ObtenerViajes($destinoId: Int!) {
       vuelos(destinoId: $destinoId) {
         id
