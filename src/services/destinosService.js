@@ -5,7 +5,9 @@ export async function obtenerDestinos() {
     return destinosCacheados;
   }
 
-  const respuesta = await fetch("/api/destinos");
+  const respuesta = await fetch(
+    `${import.meta.env.BASE_URL}api/destinos`
+  );
 
   if (!respuesta.ok) {
     throw new Error("No se pudieron cargar los destinos");

@@ -51,6 +51,54 @@ const vuelos = [
     precio: 390000,
     fecha: "2026-12-16",
     disponibilidad: 15
+  },
+  {
+    id: "3",
+    destinoId: "2",
+    aerolinea: "LATAM",
+    precio: 520000,
+    fecha: "2026-12-17",
+    disponibilidad: 12
+  },
+  {
+    id: "4",
+    destinoId: "2",
+    aerolinea: "GOL",
+    precio: 480000,
+    fecha: "2026-12-18",
+    disponibilidad: 10
+  },
+  {
+    id: "5",
+    destinoId: "3",
+    aerolinea: "Air France",
+    precio: 850000,
+    fecha: "2026-12-19",
+    disponibilidad: 15
+  },
+  {
+    id: "6",
+    destinoId: "3",
+    aerolinea: "LATAM",
+    precio: 790000,
+    fecha: "2026-12-20",
+    disponibilidad: 8
+  },
+  {
+    id: "7",
+    destinoId: "4",
+    aerolinea: "Japan Airlines",
+    precio: 1100000,
+    fecha: "2026-12-21",
+    disponibilidad: 10
+  },
+  {
+    id: "8",
+    destinoId: "4",
+    aerolinea: "LATAM",
+    precio: 1050000,
+    fecha: "2026-12-22",
+    disponibilidad: 7
   }
 ];
 
@@ -70,15 +118,63 @@ const hoteles = [
     precio: 120000,
     fecha: "2026-12-15",
     disponibilidad: 8
+  },
+  {
+    id: "3",
+    destinoId: "2",
+    nombre: "Hotel Copacabana",
+    precio: 95000,
+    fecha: "2026-12-17",
+    disponibilidad: 12
+  },
+  {
+    id: "4",
+    destinoId: "2",
+    nombre: "Rio Palace",
+    precio: 130000,
+    fecha: "2026-12-18",
+    disponibilidad: 6
+  },
+  {
+    id: "5",
+    destinoId: "3",
+    nombre: "Hotel Eiffel",
+    precio: 150000,
+    fecha: "2026-12-19",
+    disponibilidad: 9
+  },
+  {
+    id: "6",
+    destinoId: "3",
+    nombre: "Paris Central",
+    precio: 180000,
+    fecha: "2026-12-20",
+    disponibilidad: 5
+  },
+  {
+    id: "7",
+    destinoId: "4",
+    nombre: "Tokyo Inn",
+    precio: 110000,
+    fecha: "2026-12-21",
+    disponibilidad: 11
+  },
+  {
+    id: "8",
+    destinoId: "4",
+    nombre: "Sakura Hotel",
+    precio: 140000,
+    fecha: "2026-12-22",
+    disponibilidad: 7
   }
 ];
 
 export const handlers = [
-  http.get("/api/destinos", () => {
+  http.get(`${import.meta.env.BASE_URL}api/destinos`, () => {
     return HttpResponse.json(destinos);
   }),
 
-  http.post("/graphql", async ({ request }) => {
+  http.post(`${import.meta.env.BASE_URL}graphql`, async ({ request }) => {
     const body = await request.json();
     const { operationName, variables } = body;
 

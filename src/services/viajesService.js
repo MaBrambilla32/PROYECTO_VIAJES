@@ -18,7 +18,7 @@ export async function obtenerViajes(destinoId) {
     }
   `;
 
-  const respuesta = await fetch("/graphql", {
+  const respuesta = await fetch(`${import.meta.env.BASE_URL}graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
